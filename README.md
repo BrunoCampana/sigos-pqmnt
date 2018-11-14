@@ -1,3 +1,3 @@
 # Sistema de Gestão de Ordem de Serviço
 
-O SIGOS é um sistema de gestão de ordem de serviço voltado para Parques Regionais de Manutenção. Ele foi desenvolvido durante a Operação Ricardo Franco, no ano de 2017. No ano de 2018, recebeu novas funções e adaptações.
+O SIGOS é um sistema de gestão de ordem de serviço voltado para Parques Regionais de Manutenção. Ele foi desenvolvido durante a Operação Ricardo Franco, no ano de 2017. A versão inicial sofreu algumas modificações pela equipe de informática do Parque Regional de Manutenção 12. Mesmo assim, durante o uso verificou-se a necessidade de algumas melhorias, as quais foram feitas durante a operação em 2018. A ideia principal é que ele possa auxiliar no fluxo de uma ordem de serviço, substituindo um trabalho que era feito com papel e em planilhas por um processo informatizado.
