@@ -1,0 +1,55 @@
+{% extends "ordemDeServico/os_base.html" %}
+{% block title %} Visualizar OS {% endblock %}
+
+{% block options %}
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title"> <b>ORDEM DE SERVIÇO</b> </h3>
+                </div>
+
+
+                    <div class="box-body">
+                       {% for key, value in ordemDeServico.items %}
+                           <div class="form-group">
+                                <label  class="col-sm-6 control-label"> {{ key }} </label>
+                                <label  class="col-sm-6 control-label"> {{ value }} </label>
+                           </div>
+                       {% endfor %}
+
+                    </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+{% endblock%}
+
+{% block list %}
+    <form class=form-horizontal method="post">
+        {% csrf_token %}
+        <div class="box-header">
+            {{ pre_form_message|safe }}
+        </div>
+
+        <div class="box-body">
+            {% for item in form_consulta %}
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label"> {{ item.label }} </label>
+                    {{ item }}
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="box-footer">
+            {{ submit | safe}}
+        </div>
+    </form>
+{% endblock %}

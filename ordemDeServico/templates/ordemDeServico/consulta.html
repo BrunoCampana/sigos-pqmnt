@@ -1,0 +1,117 @@
+{% extends "ordemDeServico/os_base.html" %}
+
+{% block title %} Consulta {% endblock %}
+
+{% block options %}
+
+<style>
+.group {
+    -webkit-column-count: 5; /* Chrome, Safari, Opera */
+    -moz-column-count: 5; /* Firefox */
+    column-count: 5;
+}
+</style>
+
+<script language="JavaScript">
+function toggle(source) {
+  checkboxes = document.getElementsByName('checks');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    checkboxes[i].checked = source.checked;
+  }
+}
+</script>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form_consulta }}
+		<br />
+		<br />
+        <center><input type="submit" name="consul" value="Consultar"></center>
+		<br />
+		<fieldset class="group">
+			<legend><center>Selecione quais campos deseja exportar </center></legend>
+			<ul class="checkbox">
+				<li><input type="checkbox" name="checks" value="id" checked>ID</li>
+				<li><input type="checkbox" name="checks" value="nr_os" checked>NR OS</li>
+				<li><input type="checkbox" name="checks" value="tipo" checked>Tipo</li>
+				<li><input type="checkbox" name="checks" value="status" checked>Status</li>
+				<li><input type="checkbox" name="checks" value="nd" checked>nd</li>
+				<li><input type="checkbox" name="checks" value="pit" checked>pit</li>
+				<li><input type="checkbox" name="checks" value="tempo" checked>tempo</li>
+				<li><input type="checkbox" name="checks" value="suprimento_aplicado" checked>Suprimento Aplicado</li>
+				<li><input type="checkbox" name="checks" value="motivo" checked>Motivo</li>
+				<li><input type="checkbox" name="checks" value="desc_material" checked>Descrição material</li>
+				<li><input type="checkbox" name="checks" value="prioridade" checked>Prioridade</li>
+				<li><input type="checkbox" name="checks" value="quantidade" checked>Quantidade</li>
+				<li><input type="checkbox" name="checks" value="serv_realizado" checked>Serviço Realizado</li>
+				<li><input type="checkbox" name="checks" value="custo_total" checked>Custo total</li>
+				<li><input type="checkbox" name="checks" value="classe" checked>Classe</li>
+				<li><input type="checkbox" name="checks" value="om_requerente" checked>OM requerente</li>
+				<li><input type="checkbox" name="checks" value="ordem_recolhimento" checked>Ordem recolhimento</li>
+				<li><input type="checkbox" name="checks" value="guia_recolhimento" checked>Guia recolhimento</li>
+				<li><input type="checkbox" name="checks" value="num_diex" checked>Nr DIEx</li>
+				<li><input type="checkbox" name="checks" value="custo_total" checked>Custo total</li>
+				<li><input type="checkbox" name="checks" value="medidas_corretivas" checked>Medidas Corretivas</li>
+				<li><input type="checkbox" name="checks" value="quant_homens" checked>Quantidade Homens</li>
+				<li><input type="checkbox" name="checks" value="custo_total" checked>Custo total</li>
+				<li><input type="checkbox" name="checks" value="prestador_servico" checked>Prestador Serviço</li>
+				<li><input type="checkbox" name="checks" value="sistema" checked>Sistema</li>
+				<li><input type="checkbox" name="checks" value="ch_cp" checked>Chefe CP</li>
+				<li><input type="checkbox" name="checks" value="ch_classe" checked>Chefe Classe</li>
+				<li><input type="checkbox" name="checks" value="cmt_pel" checked>Cmt Pelotão</li>
+				<li><input type="checkbox" name="checks" value="abertura_os_date" checked>Data de abertura</li>
+				<li><input type="checkbox" name="checks" value="aguardando_ciente_date" checked>Data Aguardando Ciente</li>
+				<li><input type="checkbox" name="checks" value="aguardando_inspecao_date" checked>Data Aguardando Inspeção</li>
+				<li><input type="checkbox" name="checks" value="realizando_inspecao_date" checked>Data Realizando Inspeção</li>
+				<li><input type="checkbox" name="checks" value="aguardando_manutencao_date" checked>Data Aguardando Manutenção</li>
+				<li><input type="checkbox" name="checks" value="em_manutencao_date" checked>Data em Manutenção</li>
+				<li><input type="checkbox" name="checks" value="aguardando_testes_date" checked>Data aguardando testes</li>
+				<li><input type="checkbox" name="checks" value="testes_em_execucao_date" checked>Data em Execução</li>
+				<li><input type="checkbox" name="checks" value="remanutencao_date" checked>Data Remanutenção</li>
+				<li><input type="checkbox" name="checks" value="aguardando_remessa_date" checked>Data aguardando remessa</li>
+				<li><input type="checkbox" name="checks" value="em_manutencao_date" checked>Data em Manutenção</li>
+				<li><input type="checkbox" name="checks" value="fechada_sem_ciente_date" checked>Data OS Fechada (S/ ciente)</li>
+				<li><input type="checkbox" name="checks" value="fechada_sem_ciente_date" checked>Data OS Fechada (C/ ciente)</li>
+				<li><input type="checkbox" name="checks" value="realizacao_date" checked>Data Realizacao</li>
+			</ul>
+		</fieldset>
+		<center><input type="checkbox" onClick="toggle(this)" checked/> Marcar/Desmarcar todos<br/></center>
+		<br />
+
+        <center><input type="submit" name="exp" value="Exportar"></center>
+    </form>
+{% endblock%}
+
+{% block list %}
+
+
+            <div class="box-body no-padding">
+              <table class="table">
+                <tbody>
+                 <tr>
+		    <th> NR OS </th>
+		    <th> TIPO APOIO </th>
+		    <th> CLASSE </th>
+  	    	    <th> SISTEMA </th>
+		    <th> DATA ABERTURA </th>
+		    <th> STATUS ATUAL </th>
+		    <th> VISUALIZAR </th>
+	  	  </tr>
+	  
+
+		   {% for item in data %}
+		    <tr>	 
+			<td>{{ item.nr_os }}</td>
+			<td>{{ item.tipo }}</td>
+			<td>{{ item.classe }}</td>	 
+			<td>{{ item.sistema_id }}</td>
+			<td>{{ item.abertura_os_date }}</td>
+			<td>{{ item.status }} </td>
+			<td><a href="/ordemservico/visualizar/{{ item.id }}">Ver OS</a> </td>
+		    </tr>
+		  {% endfor %}
+		</tbody></table>
+            </div>
+            <!-- /.box-body -->
+
+{% endblock %}
